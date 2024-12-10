@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/danielRamosMencia/consunet-api/internal/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
@@ -20,6 +21,8 @@ func main() {
 		ServerHeader:  "Fiber",
 		AppName:       "CONSUNET-API v0.0.0",
 	})
+
+	routes.SetUpRouter(app)
 
 	port := os.Getenv("SERVER_PORT")
 	app.Listen(port)
