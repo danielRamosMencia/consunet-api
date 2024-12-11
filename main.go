@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/danielRamosMencia/consunet-api/internal/database"
+	"github.com/danielRamosMencia/consunet-api/internal/middlewares"
 	"github.com/danielRamosMencia/consunet-api/internal/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -21,6 +22,7 @@ func main() {
 		CaseSensitive: true,
 		ServerHeader:  "Fiber",
 		AppName:       "CONSUNET-API v0.0.0",
+		ErrorHandler:  middlewares.ErrorHandler,
 	})
 
 	database.ConnectDatabase()
