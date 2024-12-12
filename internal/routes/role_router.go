@@ -10,4 +10,5 @@ func RoleRoutes(router fiber.Router) {
 
 	r.Get("/", rolecontrollers.GetRoles)
 	r.Get("/:id", rolecontrollers.GetRole)
+	r.Post("/", rolecontrollers.CreateRole)
 }
