@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"sync"
+	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -35,6 +36,10 @@ func ConnectDatabase() *sql.DB {
 		if err != nil {
 			log.Panic("Error reaching database", err)
 		}
+
+		Connx.SetConnMaxIdleTime(5 * time.Minute) // 5 mins
+		Connx.SetMaxOpenConns(20)
+		Connx.SetMaxIdleConns(10)
 
 		log.Println("Database connected successfully")
 	})
