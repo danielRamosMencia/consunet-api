@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/danielRamosMencia/consunet-api/internal/configs"
-	"github.com/danielRamosMencia/consunet-api/internal/helpers"
 	roleservices "github.com/danielRamosMencia/consunet-api/internal/services/role"
+	"github.com/danielRamosMencia/consunet-api/internal/validations"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,7 +16,7 @@ func PatchRole(c *fiber.Ctx) error {
 
 	id := c.Params("id")
 
-	changeActive, res, err := helpers.CheckActive(c)
+	changeActive, res, err := validations.CheckActive(c)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":  res,

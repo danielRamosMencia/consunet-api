@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/danielRamosMencia/consunet-api/internal/database"
-	"github.com/danielRamosMencia/consunet-api/internal/helpers"
 	"github.com/danielRamosMencia/consunet-api/internal/middlewares"
 	"github.com/danielRamosMencia/consunet-api/internal/routes"
+	"github.com/danielRamosMencia/consunet-api/internal/validations"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
@@ -27,7 +27,7 @@ func main() {
 	})
 
 	database.ConnectDatabase()
-	helpers.InitValidator()
+	validations.InitValidator()
 	routes.SetUpRouter(app)
 
 	port := os.Getenv("SERVER_PORT")

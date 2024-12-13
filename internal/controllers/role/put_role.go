@@ -5,9 +5,9 @@ import (
 	"log"
 
 	"github.com/danielRamosMencia/consunet-api/internal/configs"
-	"github.com/danielRamosMencia/consunet-api/internal/helpers"
 	"github.com/danielRamosMencia/consunet-api/internal/models/requests"
 	roleservices "github.com/danielRamosMencia/consunet-api/internal/services/role"
+	"github.com/danielRamosMencia/consunet-api/internal/validations"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -27,12 +27,12 @@ func PutRole(c *fiber.Ctx) error {
 		})
 	}
 
-	err = helpers.Validate.Struct(updateRole)
+	err = validations.Validate.Struct(updateRole)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":        "Error en validación/es",
 			"código":       "role-err-003",
-			"validaciones": helpers.ValidatorErrorsMap(err),
+			"validaciones": validations.ValidatorErrorsMap(err),
 		})
 	}
 
