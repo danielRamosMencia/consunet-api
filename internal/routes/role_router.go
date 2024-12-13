@@ -13,4 +13,5 @@ func RoleRoutes(router fiber.Router) {
 	r.Post("/", rolecontrollers.PostRole)
 	r.Put("/:id", rolecontrollers.PutRole)
 	r.Delete("/:id", rolecontrollers.DeleteRole)
+	r.Patch("/:id", rolecontrollers.PatchRole)
 }
