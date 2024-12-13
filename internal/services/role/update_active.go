@@ -6,15 +6,14 @@ import (
 	"log"
 
 	"github.com/danielRamosMencia/consunet-api/internal/database"
-	"github.com/danielRamosMencia/consunet-api/internal/models/requests"
 )
 
 var (
-	responseMessage string = "Rol desactivado con éxito"
-	prefix          string = "inactivar"
+	responseMessage string
+	prefix          string
 )
 
-func UpdateActive(ctx context.Context, id string, req requests.ToggleActive) (string, error) {
+func UpdateActive(ctx context.Context, id string, req bool) (string, error) {
 	const query = `
 	UPDATE
 		"Role"
@@ -25,15 +24,18 @@ func UpdateActive(ctx context.Context, id string, req requests.ToggleActive) (st
 		"id" = $2;
 	`
 
-	if req.Active {
+	if req {
 		prefix = "activar"
 		responseMessage = "Rol activado con éxito"
+	} else {
+		prefix = "inactivar"
+		responseMessage = "Rol desactivado con éxito"
 	}
 
 	result, err := database.Connx.ExecContext(
 		ctx,
 		query,
-		req.Active,
+		req,
 		id,
 	)
 	if err != nil {

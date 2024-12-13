@@ -6,7 +6,6 @@ import (
 
 	"github.com/danielRamosMencia/consunet-api/internal/configs"
 	"github.com/danielRamosMencia/consunet-api/internal/helpers"
-	"github.com/danielRamosMencia/consunet-api/internal/models/requests"
 	roleservices "github.com/danielRamosMencia/consunet-api/internal/services/role"
 	"github.com/gofiber/fiber/v2"
 )
@@ -27,11 +26,7 @@ func PatchRole(c *fiber.Ctx) error {
 
 	log.Println("changeActive === ", changeActive)
 
-	toggleValue := requests.ToggleActive{
-		Active: changeActive,
-	}
-
-	message, err := roleservices.UpdateActive(ctx, id, toggleValue)
+	message, err := roleservices.UpdateActive(ctx, id, changeActive)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,

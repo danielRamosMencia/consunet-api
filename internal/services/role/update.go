@@ -9,7 +9,7 @@ import (
 	"github.com/danielRamosMencia/consunet-api/internal/models/requests"
 )
 
-func Update(ctx context.Context, id string, req requests.CreateRole) (string, error) {
+func Update(ctx context.Context, id string, req requests.UpdateRole) (string, error) {
 	const query = `
 	UPDATE
 		"Role"
@@ -19,7 +19,7 @@ func Update(ctx context.Context, id string, req requests.CreateRole) (string, er
 		"active" = $3,
 		"updated_at" = CURRENT_TIMESTAMP
 	WHERE
-		"id" = $4
+		"id" = $4;
 	`
 
 	if req.Active == nil {

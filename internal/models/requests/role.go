@@ -5,3 +5,9 @@ type CreateRole struct {
 	Code   string `json:"code" validate:"required"`
 	Active *bool  `json:"active"`
 }
+
+type UpdateRole struct {
+	Name   string `json:"name" validate:"required"`
+	Code   string `json:"code" validate:"required"`
+	Active *bool  `json:"active"`
+}

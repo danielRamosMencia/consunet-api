@@ -24,7 +24,7 @@ func Insert(ctx context.Context, req requests.CreateRole) (string, error) {
 		req.Active = &defaultTrue
 	}
 
-	result, err := database.Connx.ExecContext(
+	_, err := database.Connx.ExecContext(
 		ctx,
 		query,
 		id,
@@ -37,6 +37,5 @@ func Insert(ctx context.Context, req requests.CreateRole) (string, error) {
 		return "Error al crear el rol", err
 	}
 
-	log.Print(result)
 	return "Rol creado con éxito", nil
 }

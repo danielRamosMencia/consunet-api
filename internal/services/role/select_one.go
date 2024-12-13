@@ -38,14 +38,12 @@ func SelectOne(ctx context.Context, id string) (responses.Role, string, error) {
 
 	switch {
 	case err == sql.ErrNoRows:
-		log.Println("Role with id" + id + "not found")
-		return role, "Rol no encontrado", sql.ErrNoRows
+		log.Println("Role with id: " + id + " not found")
+		return role, "Rol no encontrado", err
 	case err != nil:
 		log.Println("Error getting role: ", err)
 		return role, "Error al obtener el rol", err
 	}
 
-	log.Println("Process completed")
 	return role, "Rol encontrado", nil
-
 }

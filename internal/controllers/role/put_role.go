@@ -15,7 +15,7 @@ func PutRole(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
-	var updateRole requests.CreateRole
+	var updateRole requests.UpdateRole
 	id := c.Params("id")
 
 	err := c.BodyParser(&updateRole)
