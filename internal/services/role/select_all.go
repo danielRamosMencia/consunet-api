@@ -48,5 +48,5 @@ func SelectAll(ctx context.Context) ([]responses.Role, string, error) {
 	}
 
 	log.Println("Process completed")
-	return roles, "Proceso completado", nil
+	return roles, "Lista de roles", nil
 }

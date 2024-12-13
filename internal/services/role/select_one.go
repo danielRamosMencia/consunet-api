@@ -46,6 +46,6 @@ func SelectOne(ctx context.Context, id string) (responses.Role, string, error) {
 	}
 
 	log.Println("Process completed")
-	return role, "Proceso completado", nil
+	return role, "Rol encontrado", nil
 
 }
