@@ -32,6 +32,7 @@ func GenerateJwt(data responses.UserData) (string, int64, error) {
 	claims["id"] = data.Id
 	claims["username"] = data.Username
 	claims["email"] = data.Email
+	claims["active"] = data.Active
 	claims["exp"] = exp
 	claims["iat"] = iat
 	claims["nbf"] = nbf

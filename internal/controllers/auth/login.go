@@ -2,6 +2,7 @@ package authcontrollers
 
 import (
 	"context"
+	"database/sql"
 
 	"github.com/danielRamosMencia/consunet-api/internal/configs"
 	"github.com/danielRamosMencia/consunet-api/internal/models/requests"
@@ -34,8 +35,14 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	userData, message, err := authservices.UserData(ctx, authRequest)
-	if err != nil {
+	switch {
+	case err == sql.ErrNoRows:
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error":  message,
+			"código": "error-log-000",
+		})
+	case err != nil:
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,
 			"código": "error-log-000",
 		})

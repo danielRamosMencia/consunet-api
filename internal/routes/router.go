@@ -20,5 +20,7 @@ func SetUpRouter(app *fiber.App) {
 	})
 
 	HealthCheckRoutes(v1)
+	AuthRoutes(v1)
 	RoleRoutes(v1)
+
 }
