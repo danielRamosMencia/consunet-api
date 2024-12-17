@@ -25,8 +25,6 @@ func GenerateJwt(data responses.UserData) (string, int64, error) {
 	nbf := now.Unix()
 	maxAge := exp - iat
 
-	log.Print(maxAge, "maxAge")
-
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
 	claims["id"] = data.Id

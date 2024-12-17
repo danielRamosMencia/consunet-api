@@ -19,6 +19,7 @@ func GetConnectionOptions(c *fiber.Ctx) error {
 			"código": "conn-err-000",
 		})
 	}
+
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"mensaje": message,
 		"data":    connectionsData,
