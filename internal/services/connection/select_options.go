@@ -5,11 +5,11 @@ import (
 	"log"
 
 	"github.com/danielRamosMencia/consunet-api/internal/database"
-	"github.com/danielRamosMencia/consunet-api/internal/models/responses"
+	"github.com/danielRamosMencia/consunet-api/internal/models/shared"
 )
 
-func SelectOptions(ctx context.Context) ([]responses.ConnectionOption, string, error) {
-	var connections []responses.ConnectionOption
+func SelectOptions(ctx context.Context) ([]shared.Options, string, error) {
+	var connections []shared.Options
 	const query = `
 	SELECT
 		"id",
@@ -29,7 +29,7 @@ func SelectOptions(ctx context.Context) ([]responses.ConnectionOption, string, e
 	defer rows.Close()
 
 	for rows.Next() {
-		var connection responses.ConnectionOption
+		var connection shared.Options
 		err := rows.Scan(
 			&connection.Id,
 			&connection.Name,
