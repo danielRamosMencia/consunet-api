@@ -12,26 +12,26 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PostDeviceProject(c *fiber.Ctx) error {
+func PostUserProject(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
-	var addDevice requests.CreateDeviceProject
+	var addCollab requests.CreateUserProject
 
-	err := c.BodyParser(&addDevice)
+	err := c.BodyParser(&addCollab)
 	if err != nil {
 		log.Println("Error parsing body:", err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error":  "Campos para solicitud de dispositivo en proyecto incorrectos",
-			"código": "pro-err-002",
+			"error":  "Campos para solicitud de nuevo colaborador incorrectos",
+			"código": "pro-err-003",
 		})
 	}
 
-	err = validations.Validate.Struct(addDevice)
+	err = validations.Validate.Struct(addCollab)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":        "Error en validación/es",
-			"código":       "pro-err-002",
+			"código":       "pro-err-003",
 			"validaciones": validations.ValidatorErrorsMap(err),
 		})
 	}
@@ -40,15 +40,15 @@ func PostDeviceProject(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  "No se pudo obtener la información de la sesión",
-			"código": "pro-err-002",
+			"código": "pro-err-003",
 		})
 	}
 
-	message, err := projectservices.InsertDeviceProject(ctx, userData.Email, addDevice)
+	message, err := projectservices.InsertUserProject(ctx, userData.Email, addCollab)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,
-			"código": "pro-err-002",
+			"código": "pro-err-003",
 		})
 	}
 

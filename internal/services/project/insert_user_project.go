@@ -9,10 +9,10 @@ import (
 	"github.com/danielRamosMencia/consunet-api/internal/utils"
 )
 
-func InsertDeviceProject(ctx context.Context, assignedBy string, req requests.CreateDeviceProject) (string, error) {
+func InsertUserProject(ctx context.Context, assignedBy string, req requests.CreateUserProject) (string, error) {
 	const query = `
-	INSERT INTO "DevicesOnProject"
-		("id", "device_id", "project_id", "activity_id", "assigned_by")
+	INSERT INTO "UsersOnProject"
+		("id", "user_id", "project_id", "permission_id", "assigned_by")
 	VALUES ($1, $2, $3, $4, $5);
 	`
 
@@ -22,15 +22,15 @@ func InsertDeviceProject(ctx context.Context, assignedBy string, req requests.Cr
 		ctx,
 		query,
 		id,
-		req.Device_id,
+		req.User_id,
 		req.Project_id,
-		req.Activity_id,
+		req.Permission_id,
 		assignedBy,
 	)
 	if err != nil {
-		log.Println("Error adding device to project: ", err)
-		return "Error al agregar dispositivo", err
+		log.Println("Error adding collab to project: ", err)
+		return "Error al agregar el colaborador", err
 	}
 
-	return "Dispositivo agregado correctamente", nil
+	return "Colaborador agregado con éxito", nil
 }
