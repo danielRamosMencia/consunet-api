@@ -19,8 +19,18 @@ func SetUpRouter(app *fiber.App) {
 		return c.Next()
 	})
 
+	panelv1 := app.Group("api/portal/v1", func(c *fiber.Ctx) error {
+		c.Set("Version", "admin-portal-v1")
+		return c.Next()
+	})
+
+	// web app routes
 	HealthCheckRoutes(v1)
 	AuthRoutes(v1)
-	RoleRoutes(v1)
+	ConnectionRoutes(v1)
+
+	// admin panel routes
+	HealthCheckRoutes(panelv1)
+	RoleRoutes(panelv1)
 
 }
