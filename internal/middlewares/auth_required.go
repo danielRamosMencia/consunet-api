@@ -53,8 +53,7 @@ func AuthRequired(c *fiber.Ctx) error {
 		})
 	}
 
-	// TODO verify user
-	log.Println(claims["id"])
+	c.Locals("user_claims", claims)
 
 	return c.Next()
 }
