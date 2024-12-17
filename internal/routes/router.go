@@ -29,6 +29,7 @@ func SetUpRouter(app *fiber.App) {
 	AuthRoutes(v1)
 	ConnectionRoutes(v1)
 	ProjectRoutes(v1)
+	ActivityRoutes(v1)
 
 	// admin panel routes
 	HealthCheckRoutes(panelv1)

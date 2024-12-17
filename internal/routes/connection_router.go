@@ -9,7 +9,7 @@ import (
 func ConnectionRoutes(router fiber.Router) {
 	r := router.Group("/connections")
 
-	r.Get("/", middlewares.AuthRequired, connectioncontrollers.GetConnectionOptions)
+	r.Get("/", middlewares.AuthRequired, connectioncontrollers.GetOptions)
 }
 
 func ConnectionRoutesAdm(router fiber.Router) {
