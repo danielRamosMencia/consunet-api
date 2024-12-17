@@ -12,26 +12,26 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PostProject(c *fiber.Ctx) error {
+func PostDeviceProject(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
-	var newProject requests.CreateProject
+	var addDevice requests.CreateDeviceProject
 
-	err := c.BodyParser(&newProject)
+	err := c.BodyParser(&addDevice)
 	if err != nil {
 		log.Println("Error parsing body:", err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":  "Campos para solicitud de nuevo proyecto incorrectos",
-			"código": "pro-err-001",
+			"código": "pro-err-002",
 		})
 	}
 
-	err = validations.Validate.Struct(newProject)
+	err = validations.Validate.Struct(addDevice)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":        "Error en validación/es",
-			"código":       "pro-err-001",
+			"código":       "pro-err-002",
 			"validaciones": validations.ValidatorErrorsMap(err),
 		})
 	}
@@ -40,15 +40,15 @@ func PostProject(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  "No se pudo obtener la información de la sesión",
-			"código": "pro-err-001",
+			"código": "pro-err-002",
 		})
 	}
 
-	message, err := projectservices.Insert(ctx, userData.Id, newProject)
+	message, err := projectservices.InsertDeviceProject(ctx, userData.Email, addDevice)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,
-			"código": "pro-err-001",
+			"código": "pro-err-002",
 		})
 	}
 

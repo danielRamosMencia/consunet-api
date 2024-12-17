@@ -11,4 +11,5 @@ func ProjectRoutes(router fiber.Router) {
 
 	r.Get("/user", middlewares.AuthRequired, projectcontrollers.GetUserProjects)
 	r.Post("/", middlewares.AuthRequired, projectcontrollers.PostProject)
+	r.Post("/device", middlewares.AuthRequired, projectcontrollers.PostDeviceProject)
 }
