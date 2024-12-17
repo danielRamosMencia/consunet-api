@@ -8,22 +8,22 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func GetCollabs(c *fiber.Ctx) error {
+func GetProjectDevices(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
 	projectId := c.Params("project_id")
 
-	collabsData, message, err := projectservices.SelectCollabs(ctx, projectId)
+	projectDevicesData, message, err := projectservices.SelectProjectDevices(ctx, projectId)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,
-			"código": "pro-err-004",
+			"código": "pro-err-005",
 		})
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"data":    collabsData,
+		"data":    projectDevicesData,
 		"mensaje": message,
 	})
 }

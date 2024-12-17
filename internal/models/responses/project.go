@@ -13,3 +13,11 @@ type Collabs struct {
 	Email      string `json:"email"`
 	Permission string `json:"permission"`
 }
+
+type ProjectDevices struct {
+	Id              string  `json:"id"`
+	Device          string  `json:"device"`
+	Activity        string  `json:"activity"`
+	Max_consumption float32 `json:"max_consumption"`
+	Min_consumption float32 `json:"min_consumption"`
+}
