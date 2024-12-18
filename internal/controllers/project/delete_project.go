@@ -8,17 +8,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func DeleteDeviceProject(c *fiber.Ctx) error {
+func DeleteProject(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
 	id := c.Params("id")
 
-	message, err := projectservices.DeleteDeviceProject(ctx, id)
+	message, err := projectservices.Delete(ctx, id)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,
-			"código": "pro-err-007",
+			"código": "pro-err-009",
 		})
 	}
 

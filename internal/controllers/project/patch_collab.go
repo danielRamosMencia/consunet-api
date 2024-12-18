@@ -11,36 +11,36 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PacthDeviceActivity(c *fiber.Ctx) error {
+func PatchCollab(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
-	var updateActivity requests.UpdateDeviceActivity
+	var updatePermission requests.UpdateCollab
 	id := c.Params("id")
 
-	err := c.BodyParser(&updateActivity)
+	err := c.BodyParser(&updatePermission)
 	if err != nil {
 		log.Println("Error parsing body:", err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error":  "Campos para solicitud de actualizar actividad en el dispositivo incorrectos",
-			"código": "pro-err-006",
+			"error":  "Campos para solicitud de actualizar el colaborador incorrectos",
+			"código": "pro-err-011",
 		})
 	}
 
-	err = validations.Validate.Struct(updateActivity)
+	err = validations.Validate.Struct(updatePermission)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":        "Error en validación/es",
-			"código":       "pro-err-006",
+			"código":       "pro-err-011",
 			"validaciones": validations.ValidatorErrorsMap(err),
 		})
 	}
 
-	message, err := projectservices.UpdateDeviceActivity(ctx, id, updateActivity)
+	message, err := projectservices.UpdateCollab(ctx, id, updatePermission)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":  message,
-			"código": "pro-err-006",
+			"código": "pro-err-011",
 		})
 	}
 

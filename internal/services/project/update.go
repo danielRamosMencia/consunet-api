@@ -16,7 +16,8 @@ func Update(ctx context.Context, id string, req requests.UpdateProject) (string,
 	SET
 		"name" = $1,
 		"code" = $2,
-		"connection_id" = $3
+		"connection_id" = $3,
+		"updated_at" = CURRENT_TIMESTAMP
 	WHERE
 		"id" = $4;
 	`
