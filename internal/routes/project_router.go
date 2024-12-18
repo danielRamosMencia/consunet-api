@@ -9,10 +9,12 @@ import (
 func ProjectRoutes(router fiber.Router) {
 	r := router.Group("/projects")
 
-	r.Get("/user", middlewares.AuthRequired, projectcontrollers.GetUserProjects)
-	r.Get("/collabs/:project_id", projectcontrollers.GetCollabs)
-	r.Get("/devices/:project_id", projectcontrollers.GetProjectDevices)
+	r.Get("/", middlewares.AuthRequired, projectcontrollers.GetUserProjects)
+	r.Get("/collabs/:project_id", middlewares.AuthRequired, projectcontrollers.GetCollabs)
+	r.Get("/devices/:project_id", middlewares.AuthRequired, projectcontrollers.GetProjectDevices)
 	r.Post("/", middlewares.AuthRequired, projectcontrollers.PostProject)
-	r.Post("/device", middlewares.AuthRequired, projectcontrollers.PostDeviceProject)
-	r.Post("/user", middlewares.AuthRequired, projectcontrollers.PostUserProject)
+	r.Post("/devices", middlewares.AuthRequired, projectcontrollers.PostDeviceProject)
+	r.Post("/users", middlewares.AuthRequired, projectcontrollers.PostUserProject)
+	r.Patch("/devices/:id", middlewares.AuthRequired, projectcontrollers.PacthDeviceActivity)
+	r.Delete("/devices/:id", middlewares.AuthRequired, projectcontrollers.DeleteDeviceProject)
 }
