@@ -17,3 +17,7 @@ type CreateUserProject struct {
 	Project_id    string `json:"project_id" validate:"required"`
 	Permission_id string `json:"permission_id" validate:"required"`
 }
+
+type UpdateDeviceActivity struct {
+	Activity_id string `json:"activity_id" validate:"required"`
+}
