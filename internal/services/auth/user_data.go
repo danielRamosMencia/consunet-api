@@ -22,7 +22,8 @@ func UserData(ctx context.Context, req requests.Auth) (responses.UserData, strin
 		"username",
 		"email",
 		"active",
-		"password"
+		"password",
+		"subscription_id"
 	FROM
 		"User"
 	WHERE
@@ -42,6 +43,7 @@ func UserData(ctx context.Context, req requests.Auth) (responses.UserData, strin
 		&userData.Email,
 		&userData.Active,
 		&storedPassword,
+		&userData.Subscription_id,
 	)
 
 	switch {
