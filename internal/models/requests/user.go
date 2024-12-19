@@ -6,3 +6,7 @@ type CreateUser struct {
 	Password        string  `json:"password" validate:"required"`
 	Subscription_id *string `json:"subscription_id"`
 }
+
+type UpdateUserSubscription struct {
+	Subscription_id *string `json:"subscription_id" validate:"required"`
+}
