@@ -12,7 +12,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PostUserProject(c *fiber.Ctx) error {
+func PostCollab(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), configs.TimeOut)
 	defer cancel()
 
@@ -44,7 +44,7 @@ func PostUserProject(c *fiber.Ctx) error {
 		})
 	}
 
-	message, err := projectservices.InsertUserProject(ctx, userData.Email, addCollab)
+	message, err := projectservices.InsertCollab(ctx, userData.Email, addCollab)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":  message,

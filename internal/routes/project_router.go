@@ -15,7 +15,7 @@ func ProjectRoutes(router fiber.Router) {
 	r.Delete("/:id", middlewares.AuthRequired, projectcontrollers.DeleteProject)
 
 	r.Get("/collabs/:project_id", middlewares.AuthRequired, projectcontrollers.GetCollabs)
-	r.Post("/collabs", middlewares.AuthRequired, projectcontrollers.PostUserProject)
+	r.Post("/collabs", middlewares.AuthRequired, projectcontrollers.PostCollab)
 	r.Delete("/collabs/:id", middlewares.AuthRequired, projectcontrollers.DeleteCollab)
 	r.Patch("/collabs/:id", middlewares.AuthRequired, projectcontrollers.PatchCollab)
 
