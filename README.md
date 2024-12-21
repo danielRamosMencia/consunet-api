@@ -1,13 +1,13 @@
-## API y capa backend para aplicación Consunet.
+## API and backend layer for Consunet web application
 
-### Prerrequisitos
+### Prerrequisites
 
-- Instalar Go.
-- Instalar air. [(Ver como)](https://github.com/air-verse/air)
+- Install Go.
+- Install air. [(See how)](https://github.com/air-verse/air)
 
-### Ejecutar el proyecto
+### Execute the project locally
 
-1. Clonar el repositorio.
+1. Clone the repository
 
 ```sh
 git clone git@github.com:danielRamosMencia/consunet-api.git
@@ -17,25 +17,25 @@ git clone git@github.com:danielRamosMencia/consunet-api.git
 git clone https://github.com/danielRamosMencia/consunet-api.git
 ```
 
-2. Instalar los paquetes y dependencias.
+2. Install packages and dependencies.
 
 ```sh
 go mod tidy
 ```
 
-NOTA: En su defecto, usar:
+NOTE: if not works, instead, use:
 
 ```sh
 go mod vendor
 ```
 
-3. Levantar servidor.
+3. Execute the server.
 
 ```sh
 air
 ```
 
-NOTA: Si no ha instalado air puede usar:
+NOTE: if you haven't installed air, use:
 
 ```sh
 go run main.go
