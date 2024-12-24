@@ -22,8 +22,8 @@ func AuthRequired(c *fiber.Ctx) error {
 
 	if stringToken == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"mensaje": "Inautorizado",
-			"código":  "middle-err-000",
+			"message": "Inautorizado",
+			"code":    "middle-err-000",
 		})
 	}
 
@@ -39,8 +39,8 @@ func AuthRequired(c *fiber.Ctx) error {
 	if err != nil {
 		log.Println("Error verifying token: ", err)
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"mensaje": "Inautorizado",
-			"código":  "middle-err-001",
+			"message": "Inautorizado",
+			"code":    "middle-err-001",
 		})
 	}
 
@@ -48,8 +48,8 @@ func AuthRequired(c *fiber.Ctx) error {
 	if !ok || !byteToken.Valid {
 		log.Println("Error verifying token claims: ", err)
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"mensaje": "Inautorizado",
-			"código":  "middle-err-002",
+			"message": "Inautorizado",
+			"code":    "middle-err-002",
 		})
 	}
 
