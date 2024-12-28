@@ -62,6 +62,7 @@ func Login(c *fiber.Ctx) error {
 		Path:     "/",
 		HTTPOnly: true,
 		MaxAge:   int(maxAge),
+		SameSite: "Lax", // "None" if the request is cross-origin
 	})
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
