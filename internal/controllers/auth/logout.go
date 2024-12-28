@@ -15,6 +15,6 @@ func Logout(c *fiber.Ctx) error {
 	})
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"mensaje": "Sesión cerrada con éxito",
+		"message": "Sesión cerrada con éxito",
 	})
 }
