@@ -68,5 +68,6 @@ func Login(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"token":     token,
 		"user_data": userData,
+		"message":   "Inicio de sesión exitoso API",
 	})
 }
