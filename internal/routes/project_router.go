@@ -9,19 +9,20 @@ import (
 func ProjectRoutes(router fiber.Router) {
 	r := router.Group("/projects")
 
-	r.Get("/", middlewares.AuthRequired, projectcontrollers.GetUserProjects)
-	r.Post("/", middlewares.AuthRequired, projectcontrollers.PostProject)
-	r.Put("/:id", middlewares.AuthRequired, projectcontrollers.PutProject)
-	r.Delete("/:id", middlewares.AuthRequired, projectcontrollers.DeleteProject)
+	r.Use(middlewares.AuthRequired)
 
-	r.Get("/collabs/:project_id", middlewares.AuthRequired, projectcontrollers.GetCollabs)
-	r.Post("/collabs", middlewares.AuthRequired, projectcontrollers.PostCollab)
-	r.Delete("/collabs/:id", middlewares.AuthRequired, projectcontrollers.DeleteCollab)
-	r.Patch("/collabs/:id", middlewares.AuthRequired, projectcontrollers.PatchCollab)
+	r.Get("/", projectcontrollers.GetUserProjects)
+	r.Post("/", projectcontrollers.PostProject)
+	r.Put("/:id", projectcontrollers.PutProject)
+	r.Delete("/:id", projectcontrollers.DeleteProject)
 
-	r.Get("/devices/:project_id", middlewares.AuthRequired, projectcontrollers.GetProjectDevices)
-	r.Post("/devices", middlewares.AuthRequired, projectcontrollers.PostDeviceProject)
-	r.Delete("/devices/:id", middlewares.AuthRequired, projectcontrollers.DeleteDeviceProject)
-	r.Patch("/devices/:id", middlewares.AuthRequired, projectcontrollers.PacthDeviceActivity)
+	r.Get("/collabs/:project_id", projectcontrollers.GetCollabs)
+	r.Post("/collabs", projectcontrollers.PostCollab)
+	r.Delete("/collabs/:id", projectcontrollers.DeleteCollab)
+	r.Patch("/collabs/:id", projectcontrollers.PatchCollab)
 
+	r.Get("/devices/:project_id", projectcontrollers.GetProjectDevices)
+	r.Post("/devices", projectcontrollers.PostDeviceProject)
+	r.Delete("/devices/:id", projectcontrollers.DeleteDeviceProject)
+	r.Patch("/devices/:id", projectcontrollers.PacthDeviceActivity)
 }

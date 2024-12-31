@@ -16,21 +16,21 @@ func GetUserProjects(c *fiber.Ctx) error {
 	userData, err := helpers.GetClaims(c)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error":  "No se pudo obtener la información de la sesión",
-			"código": "pro-err-000",
+			"error": "No se pudo obtener la información de la sesión",
+			"code":  "pro-err-000",
 		})
 	}
 
 	userProjects, message, err := projectservices.SelectUserProjects(ctx, userData.Id)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error":  message,
-			"código": "pro-err-000",
+			"error": message,
+			"code":  "pro-err-000",
 		})
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"data":    userProjects,
-		"mensaje": message,
+		"message": message,
 	})
 }

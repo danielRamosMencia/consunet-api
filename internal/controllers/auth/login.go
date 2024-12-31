@@ -56,6 +56,8 @@ func Login(c *fiber.Ctx) error {
 		})
 	}
 
+	c.Locals("user_claims", userData)
+
 	c.Cookie(&fiber.Cookie{
 		Name:     "token",
 		Value:    token,
@@ -68,6 +70,6 @@ func Login(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"token":     token,
 		"user_data": userData,
-		"message":   "Inicio de sesión exitoso API",
+		"message":   "Inicio de sesión exitoso",
 	})
 }
