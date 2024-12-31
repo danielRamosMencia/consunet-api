@@ -12,7 +12,7 @@ func SetUpRouter(app *fiber.App) {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     "http://localhost:5173/", // frontend url
 		AllowMethods:     "GET,POST,HEAD,PUT,DELETE,PATCH",
-		AllowHeaders:     "Content-Type,Authorization,Accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Access-Control-Expose-Headers,Access-Control-Max-Age,Access-Control-Allow-Credentials",
+		AllowHeaders:     "Content-Type, Authorization",
 		AllowCredentials: true,
 	}))
 	app.Use(logger.New(logger.Config{}))

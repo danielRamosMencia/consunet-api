@@ -56,8 +56,6 @@ func Login(c *fiber.Ctx) error {
 		})
 	}
 
-	c.Locals("user_claims", userData)
-
 	c.Cookie(&fiber.Cookie{
 		Name:     "token",
 		Value:    token,
