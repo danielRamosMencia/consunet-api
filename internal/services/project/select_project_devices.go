@@ -45,6 +45,7 @@ func SelectProjectDevices(ctx context.Context, projectId string) ([]responses.Pr
 		)
 		if err != nil {
 			log.Println("Error scanning a device in project: ", err)
+			return nil, "Error al escanear un dispositivo", err
 		}
 
 		projectDevices = append(projectDevices, device)

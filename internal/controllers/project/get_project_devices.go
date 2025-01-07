@@ -17,13 +17,13 @@ func GetProjectDevices(c *fiber.Ctx) error {
 	projectDevicesData, message, err := projectservices.SelectProjectDevices(ctx, projectId)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error":  message,
-			"código": "pro-err-005",
+			"error": message,
+			"code":  "pro-err-005",
 		})
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"data":    projectDevicesData,
-		"mensaje": message,
+		"message": message,
 	})
 }
