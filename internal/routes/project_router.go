@@ -12,6 +12,7 @@ func ProjectRoutes(router fiber.Router) {
 	r.Use(middlewares.AuthRequired)
 
 	r.Get("/", projectcontrollers.GetUserProjects)
+	r.Get("/:id", projectcontrollers.GetProject)
 	r.Post("/", projectcontrollers.PostProject)
 	r.Put("/:id", projectcontrollers.PutProject)
 	r.Delete("/:id", projectcontrollers.DeleteProject)

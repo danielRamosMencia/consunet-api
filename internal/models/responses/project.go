@@ -1,5 +1,16 @@
 package responses
 
+import "time"
+
+type Project struct {
+	Id             string    `json:"id"`
+	Name           string    `json:"name"`
+	Code           string    `json:"code"`
+	ConnectionName string    `json:"connection_name"`
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
+}
+
 type UserProjects struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
