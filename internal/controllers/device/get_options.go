@@ -16,13 +16,13 @@ func GetOptions(c *fiber.Ctx) error {
 		deviceservices.SelectOptions(ctx)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error":  message,
-			"código": "devs-err-000",
+			"error": message,
+			"code":  "devs-err-000",
 		})
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"mensaje": message,
+		"message": message,
 		"data":    devicesData,
 	})
 }
